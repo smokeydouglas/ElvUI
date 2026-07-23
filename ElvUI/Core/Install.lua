@@ -162,6 +162,18 @@ function E:SetupTheme(theme, noDisplayMsg)
 		E.db.unitframe.colors.auraBarBuff = E:GetColor(0.31, 0.31, 0.31)
 		E.db.unitframe.colors.castColor = E:GetColor(0.31, 0.31, 0.31)
 		E.db.unitframe.colors.castClassColor = false
+	elseif theme == "modern" then
+		-- Cool, high-contrast neutrals keep the interface understated while
+		-- a clear blue accent makes interactive and time-sensitive elements pop.
+		E.db.general.bordercolor = (E.PixelMode and E:GetColor(0, 0, 0) or E:GetColor(30/255, 39/255, 51/255))
+		E.db.general.backdropcolor = E:GetColor(10/255, 14/255, 20/255)
+		E.db.general.backdropfadecolor = E:GetColor(6/255, 9/255, 14/255, 0.9)
+		E.db.unitframe.colors.borderColor = (E.PixelMode and E:GetColor(0, 0, 0) or E:GetColor(30/255, 39/255, 51/255))
+		E.db.unitframe.colors.healthclass = false
+		E.db.unitframe.colors.health = E:GetColor(37/255, 49/255, 61/255)
+		E.db.unitframe.colors.auraBarBuff = E:GetColor(47/255, 132/255, 214/255)
+		E.db.unitframe.colors.castColor = E:GetColor(55/255, 151/255, 247/255)
+		E.db.unitframe.colors.castClassColor = false
 	elseif theme == "class" then
 		classColor = E.myclass == "PRIEST" and E.PriestColors or (CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[E.myclass] or RAID_CLASS_COLORS[E.myclass])
 
@@ -187,6 +199,8 @@ function E:SetupTheme(theme, noDisplayMsg)
 	--Value Color
 	if theme == "class" then
 		E.db.general.valuecolor = E:GetColor(classColor.r, classColor.g, classColor.b)
+	elseif theme == "modern" then
+		E.db.general.valuecolor = E:GetColor(79/255, 172/255, 1)
 	else
 		E.db.general.valuecolor = E:GetColor(254/255, 123/255, 44/255)
 	end
@@ -547,6 +561,9 @@ local function SetPage(PageNum)
 		InstallOption3Button:Show()
 		InstallOption3Button:SetScript("OnClick", function() E:SetupTheme("class") end)
 		InstallOption3Button:SetText(CLASS)
+		InstallOption4Button:Show()
+		InstallOption4Button:SetScript("OnClick", function() E:SetupTheme("modern") end)
+		InstallOption4Button:SetText(L["Modern"])
 	elseif PageNum == 5 then
 		f.SubTitle:SetText(L["UI Scale"])
 		f.Desc1:SetFormattedText(L["Adjust the UI Scale to fit your screen, press the autoscale button to set the UI Scale automatically."])

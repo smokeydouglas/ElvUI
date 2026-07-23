@@ -170,6 +170,7 @@ L["Minimap"] = true
 L["MirrorTimer"] = true
 L["Miss Chance"] = true
 L["Mitigation By Level: "] = true
+L["Modern"] = true
 L["Movers"] = true
 L["Must be in group with the player if he isn't on the same server as you."] = true
 L["No Guild"] = true
