@@ -259,7 +259,11 @@ function UF:UpdateComboDisplay(event, unit)
 
 	if db.combobar.enable then
 		local inVehicle = UnitHasVehicleUI("player") or UnitHasVehicleUI("vehicle")
-		local _, formName = GetShapeshiftFormInfo(GetShapeshiftForm()) --Get the name of the current form
+		local formIndex = GetShapeshiftForm()
+		local _, formName
+		if formIndex and formIndex > 0 then
+			_, formName = GetShapeshiftFormInfo(formIndex)
+		end
 		local catFormName = GetSpellInfo(768) --Cat Form spell name for localization purposes
 		if not inVehicle and E.myclass ~= "ROGUE" and (E.myclass ~= "DRUID" or (E.myclass == "DRUID" and formName ~= catFormName)) then
 			element:Hide()
