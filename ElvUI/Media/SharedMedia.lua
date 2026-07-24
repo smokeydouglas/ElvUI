@@ -88,11 +88,14 @@ E.Media = {
 	},
 	Fonts = {
 		ActionMan = M..[[Fonts\ActionMan.ttf]],
+		BarlowCondensedSemiBold = M..[[Fonts\BarlowCondensed-SemiBold.ttf]],
 		ContinuumMedium = M..[[Fonts\ContinuumMedium.ttf]],
 		DieDieDie = M..[[Fonts\DieDieDie.ttf]],
 		Expressway = M..[[Fonts\Expressway.ttf]],
 		Homespun = M..[[Fonts\Homespun.ttf]],
 		Invisible = M..[[Fonts\Invisible.ttf]],
+		InterMedium = M..[[Fonts\Inter-Medium.ttf]],
+		JetBrainsMonoNLMedium = M..[[Fonts\JetBrainsMonoNL-Medium.ttf]],
 		PTSansNarrow = M..[[Fonts\PTSansNarrow.ttf]]
 	},
 	Sounds = {
@@ -221,7 +224,10 @@ LSM:Register("border", "ElvUI GlowBorder", E.Media.Textures.GlowTex)
 LSM:Register("font", "Continuum Medium", E.Media.Fonts.ContinuumMedium)
 LSM:Register("font", "Die Die Die!", E.Media.Fonts.DieDieDie, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("font", "Action Man", E.Media.Fonts.ActionMan)
+LSM:Register("font", "Barlow Condensed SemiBold", E.Media.Fonts.BarlowCondensedSemiBold, LSM.LOCALE_BIT_western)
 LSM:Register("font", "Expressway", E.Media.Fonts.Expressway, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register("font", "Inter Medium", E.Media.Fonts.InterMedium, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register("font", "JetBrains Mono NL Medium", E.Media.Fonts.JetBrainsMonoNLMedium, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("font", "PT Sans Narrow", E.Media.Fonts.PTSansNarrow, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("font", "Homespun", E.Media.Fonts.Homespun, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("sound", "ElvUI Aska", E.Media.Sounds.SndIncMsg)
