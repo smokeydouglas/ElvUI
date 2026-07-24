@@ -1,0 +1,57 @@
+name: Package addon
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/package.yml"
+      - "ElvUI/**"
+      - "ElvUI_OptionsUI/**"
+  pull_request:
+    paths:
+      - ".github/workflows/package.yml"
+      - "ElvUI/**"
+      - "ElvUI_OptionsUI/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build and verify package
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          version="$(sed -n 's/^## Version: //p' ElvUI/ElvUI.toc | head -n 1)"
+          test -n "$version"
+
+          short_sha="${GITHUB_SHA:0:7}"
+          package="ElvUI-${version}-AzerothCore-main.${GITHUB_RUN_NUMBER}-${short_sha}.zip"
+
+          mkdir -p dist
+          git archive --format=zip --output="dist/${package}" HEAD ElvUI ElvUI_OptionsUI
+          unzip -t "dist/${package}"
+          (cd dist && sha256sum "$package" > "${package}.sha256")
+
+          printf 'package=%s\n' "$package" >> "$GITHUB_OUTPUT"
+          printf 'artifact=%s\n' "${package%.zip}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload package
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.build.outputs.artifact }}
+          path: |
+            dist/${{ steps.build.outputs.package }}
+            dist/${{ steps.build.outputs.package }}.sha256
+          if-no-files-found: error
+          retention-days: 90

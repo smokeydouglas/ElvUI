@@ -68,7 +68,7 @@ The distribution includes English, German, Spanish, French, Korean, Portuguese, 
 
 ## Development
 
-The default branch is `master`. `origin` is the maintained fork and `upstream` tracks [ElvUI-WotLK/ElvUI](https://github.com/ElvUI-WotLK/ElvUI).
+The default branch is `main`. `origin` is the maintained fork and `upstream` tracks [ElvUI-WotLK/ElvUI](https://github.com/ElvUI-WotLK/ElvUI).
 
 Before submitting a change:
 
