@@ -1285,6 +1285,12 @@ function E:Initialize()
 	self:Tutorials()
 	self.initialized = true
 
+	-- Retired local themes fall back to Class so existing profiles do not keep
+	-- their removed palette after the installer choices disappear.
+	if self.private.theme == "modern" or self.private.theme == "modern-rounded" then
+		self:SetupTheme("class", true)
+	end
+
 	Minimap:UpdateSettings()
 
 	if E.db.general.smoothingAmount and (E.db.general.smoothingAmount ~= 0.33) then

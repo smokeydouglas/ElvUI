@@ -4,7 +4,7 @@ local S = E:GetModule("Skins")
 
 --Lua functions
 local _G = _G
-local format = format
+local format, pairs, type = format, pairs, type
 --WoW API / Variables
 local CreateFrame = CreateFrame
 local SetCVar = SetCVar
@@ -146,6 +146,49 @@ function E:GetColor(r, g, b, a)
 	return {r = r, g = g, b = b, a = a}
 end
 
+local CLASS_MODERN_BODY_FONT = "Inter Medium"
+local CLASS_MODERN_HUD_FONT = "Barlow Condensed SemiBold"
+local CLASS_MODERN_NUMBER_FONT = "JetBrains Mono NL Medium"
+
+local function SetTableFonts(tbl, defaults, font, numberFont)
+	for key, value in pairs(defaults) do
+		if key == "font" then
+			tbl[key] = font
+		elseif key == "countFont" or key == "durationFont" or key == "itemLevelFont" then
+			tbl[key] = numberFont or font
+		elseif type(value) == "table" and type(tbl[key]) == "table" then
+			SetTableFonts(tbl[key], value, font, numberFont)
+		end
+	end
+end
+
+local function SetupClassModernFonts()
+	-- Body copy stays open and neutral; compact HUD labels use a condensed
+	-- family, while aligned figures use a non-ligature monospaced face.
+	E.db.general.font = CLASS_MODERN_BODY_FONT
+	E.db.general.minimap.locationFont = CLASS_MODERN_HUD_FONT
+	E.db.general.reminder.font = CLASS_MODERN_HUD_FONT
+
+	SetTableFonts(E.db.databars, P.databars, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.bags, P.bags, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.nameplates, P.nameplates, CLASS_MODERN_HUD_FONT, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.auras, P.auras, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.datatexts, P.datatexts, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.tooltip, P.tooltip, CLASS_MODERN_BODY_FONT)
+	SetTableFonts(E.db.unitframe, P.unitframe, CLASS_MODERN_HUD_FONT, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.cooldown, P.cooldown, CLASS_MODERN_NUMBER_FONT)
+	SetTableFonts(E.db.actionbar, P.actionbar, CLASS_MODERN_NUMBER_FONT)
+
+	E.db.chat.font = CLASS_MODERN_BODY_FONT
+	E.db.chat.tabFont = CLASS_MODERN_HUD_FONT
+	E.db.tooltip.healthBar.font = CLASS_MODERN_HUD_FONT
+	E.db.cooldown.fonts.enable = true
+
+	E.private.general.dmgfont = CLASS_MODERN_HUD_FONT
+	E.private.general.namefont = CLASS_MODERN_HUD_FONT
+	E.private.general.chatBubbleFont = CLASS_MODERN_BODY_FONT
+end
+
 function E:SetupTheme(theme, noDisplayMsg)
 	E.private.theme = theme
 
@@ -162,19 +205,7 @@ function E:SetupTheme(theme, noDisplayMsg)
 		E.db.unitframe.colors.auraBarBuff = E:GetColor(0.31, 0.31, 0.31)
 		E.db.unitframe.colors.castColor = E:GetColor(0.31, 0.31, 0.31)
 		E.db.unitframe.colors.castClassColor = false
-	elseif theme == "modern" then
-		-- Cool, high-contrast neutrals keep the interface understated while
-		-- a clear blue accent makes interactive and time-sensitive elements pop.
-		E.db.general.bordercolor = (E.PixelMode and E:GetColor(0, 0, 0) or E:GetColor(30/255, 39/255, 51/255))
-		E.db.general.backdropcolor = E:GetColor(10/255, 14/255, 20/255)
-		E.db.general.backdropfadecolor = E:GetColor(6/255, 9/255, 14/255, 0.9)
-		E.db.unitframe.colors.borderColor = (E.PixelMode and E:GetColor(0, 0, 0) or E:GetColor(30/255, 39/255, 51/255))
-		E.db.unitframe.colors.healthclass = false
-		E.db.unitframe.colors.health = E:GetColor(37/255, 49/255, 61/255)
-		E.db.unitframe.colors.auraBarBuff = E:GetColor(47/255, 132/255, 214/255)
-		E.db.unitframe.colors.castColor = E:GetColor(55/255, 151/255, 247/255)
-		E.db.unitframe.colors.castClassColor = false
-	elseif theme == "class" then
+	elseif theme == "class" or theme == "class-modern" then
 		classColor = E.myclass == "PRIEST" and E.PriestColors or (CUSTOM_CLASS_COLORS and CUSTOM_CLASS_COLORS[E.myclass] or RAID_CLASS_COLORS[E.myclass])
 
 		E.db.general.bordercolor = (E.PixelMode and E:GetColor(0, 0, 0) or E:GetColor(0.31, 0.31, 0.31))
@@ -197,12 +228,14 @@ function E:SetupTheme(theme, noDisplayMsg)
 	end
 
 	--Value Color
-	if theme == "class" then
+	if theme == "class" or theme == "class-modern" then
 		E.db.general.valuecolor = E:GetColor(classColor.r, classColor.g, classColor.b)
-	elseif theme == "modern" then
-		E.db.general.valuecolor = E:GetColor(79/255, 172/255, 1)
 	else
 		E.db.general.valuecolor = E:GetColor(254/255, 123/255, 44/255)
+	end
+
+	if theme == "class-modern" then
+		SetupClassModernFonts()
 	end
 
 	E:UpdateAll(true)
@@ -562,8 +595,8 @@ local function SetPage(PageNum)
 		InstallOption3Button:SetScript("OnClick", function() E:SetupTheme("class") end)
 		InstallOption3Button:SetText(CLASS)
 		InstallOption4Button:Show()
-		InstallOption4Button:SetScript("OnClick", function() E:SetupTheme("modern") end)
-		InstallOption4Button:SetText(L["Modern"])
+		InstallOption4Button:SetScript("OnClick", function() E:SetupTheme("class-modern") end)
+		InstallOption4Button:SetText(L["Class Modern"])
 	elseif PageNum == 5 then
 		f.SubTitle:SetText(L["UI Scale"])
 		f.Desc1:SetFormattedText(L["Adjust the UI Scale to fit your screen, press the autoscale button to set the UI Scale automatically."])
