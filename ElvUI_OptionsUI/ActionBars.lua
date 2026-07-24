@@ -331,7 +331,7 @@ local function BuildABConfig()
 			type = "group",
 			name = L["TUTORIAL_TITLE47"],
 			guiInline = false,
-			disabled = function() return not E.ActionBars.Initialized or not E.myclass == "SHAMAN" end,
+			disabled = function() return not E.ActionBars.Initialized or E.myclass ~= "SHAMAN" end,
 			get = function(info) return E.db.actionbar.barTotem[info[#info]] end,
 			set = function(info, value) E.db.actionbar.barTotem[info[#info]] = value AB:PositionAndSizeBarTotem() end,
 			args = {

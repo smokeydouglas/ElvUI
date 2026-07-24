@@ -479,11 +479,5 @@ S:AddCallbackForAddon("Blizzard_AuctionUI", "Skin_Blizzard_AuctionUI", function(
 		BrowseDropDown:Point("TOPLEFT", BrowseLevelText, "BOTTOMRIGHT", 10, -1)
 	elseif locale == "koKR" then
 		BrowseDropDown:Point("TOPLEFT", BrowseLevelText, "BOTTOMRIGHT", 10, -1)
-	elseif locale == "zhTW" then
-		BrowseDropDown:Point("TOPLEFT", BrowseLevelText, "BOTTOMRIGHT", -5, 4)
-		BrowseDropDownName:Point("BOTTOMLEFT", BrowseDropDown, "TOPLEFT", 20, -3)
-
-		BidDurationSort:Width(79)
-	--	BidBidSort:Width(168)
 	end
 end)

@@ -2,7 +2,9 @@
 ## Author: Elv, Bunny
 ## Version: 6.09
 ## Title: |cff1784d1E|r|cffe5e3e3lvUI|r
-## Notes: User Interface replacement AddOn for World of Warcraft.
+## Notes: AzerothCore-focused ElvUI distribution for WotLK 3.3.5a.
+## X-Website: https://github.com/smokeydouglas/ElvUI
+## X-AzerothCore: true
 ## SavedVariables: ElvDB, ElvPrivateDB
 ## SavedVariablesPerCharacter: ElvCharacterDB
 ## OptionalDeps: Blizzard_DebugTools, SharedMedia, Tukui, ButtonFacade
