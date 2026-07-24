@@ -37,12 +37,12 @@ local instanceIconByName
 local numSavedInstances = 0
 
 local locale = GetLocale()
-local krcntw = locale == "koKR" or locale == "zhCN" or locale == "zhTW"
+local kr = locale == "koKR"
 local difficultyTag = { -- Normal, Normal, Heroic, Heroic
-	(krcntw and PLAYER_DIFFICULTY1) or utf8sub(PLAYER_DIFFICULTY1, 1, 1), -- N
-	(krcntw and PLAYER_DIFFICULTY1) or utf8sub(PLAYER_DIFFICULTY1, 1, 1), -- N
-	(krcntw and PLAYER_DIFFICULTY2) or utf8sub(PLAYER_DIFFICULTY2, 1, 1), -- H
-	(krcntw and PLAYER_DIFFICULTY2) or utf8sub(PLAYER_DIFFICULTY2, 1, 1), -- H
+	(kr and PLAYER_DIFFICULTY1) or utf8sub(PLAYER_DIFFICULTY1, 1, 1), -- N
+	(kr and PLAYER_DIFFICULTY1) or utf8sub(PLAYER_DIFFICULTY1, 1, 1), -- N
+	(kr and PLAYER_DIFFICULTY2) or utf8sub(PLAYER_DIFFICULTY2, 1, 1), -- H
+	(kr and PLAYER_DIFFICULTY2) or utf8sub(PLAYER_DIFFICULTY2, 1, 1), -- H
 }
 
 local function getTimeDiffSeconds(srvHours, srvMinutes, seconds)

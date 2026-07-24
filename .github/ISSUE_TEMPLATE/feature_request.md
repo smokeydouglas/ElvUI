@@ -1,12 +1,19 @@
 ---
 name: Feature request
-about: Suggest an idea for this project
+about: Propose a focused AzerothCore or 3.3.5a improvement
 title: ''
 labels: feature
 assignees: ''
-
 ---
 
-# Feature request
-<!--- Please describe the request here. What part of the UI do you want changed? -->
-<!--- How do you want it to look/work in comparison to how it is now? -->
+## Request
+
+Describe the behavior you want and the problem it solves.
+
+## AzerothCore relevance
+
+Explain why the change belongs in this 3.3.5a/AzerothCore fork rather than a general ElvUI plugin.
+
+## Scope
+
+List the affected frames or modules and any compatibility risks you know about.

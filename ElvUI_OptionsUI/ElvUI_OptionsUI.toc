@@ -2,7 +2,9 @@
 ## Author: Elv, Bunny
 ## Version: 1.06
 ## Title: |cff1784d1E|r|cffe5e3e3lvUI|r |cff1784d1O|r|cffe5e3e3ptionsUI|r
-## Notes: Options for ElvUI.
+## Notes: Options for the AzerothCore-focused ElvUI distribution.
+## X-Website: https://github.com/smokeydouglas/ElvUI
+## X-AzerothCore: true
 ## RequiredDeps: ElvUI
 ## LoadOnDemand: 1
 

@@ -1,53 +1,36 @@
 ---
 name: Bug report
-about: Create a report to help us improve
+about: Report a reproducible problem with this AzerothCore-focused build
 title: ''
 labels: bug
 assignees: ''
-
 ---
 
-**Description**
-<!--- Please give a short description of the issue here -->
+## Environment
 
+- ElvUI release or commit:
+- AzerothCore revision:
+- AzerothCore modules:
+- WoW client build:
+- Client locale:
+- Operating system or compatibility layer:
 
-**Version Number**
-<!--- Provide the version number here (the actual number, do not say "latest") -->
+## Problem
 
+Describe what happened and what you expected instead.
 
-**Steps to Reproduce**
-<!--- Provide all the steps necessary to reproduce the problem -->
-1. Step 1
-2. Step 2
-3. Step 3
-4. Step 4
+## Reproduction
 
+1.
+2.
+3.
 
-**Expected Behavior**
-<!--- Tell us what should happen -->
+## Isolation
 
+- Does it still happen with only ElvUI and ElvUI_OptionsUI enabled?
+- Does it still happen after clearing the client `Cache` folder?
+- Does the client frame rate drop, or do only game actions and movement pause?
 
-**Actual Behavior**
-<!--- Tell us what happens instead -->
+## Error log
 
-
-**Only ElvUI Enabled**
-<!--- Please provide information about whether or not you can reproduce it -->
-<!--- when ElvUI is the only addon enabled -->
-
-
-**Blizzard Issue?**
-<!--- Please test if you can reproduce the issue with 0 addons enabled -->
-<!--- Include screenshot of how it looks if possible -->
-
-
-**Additional Information**
-<!--- Please provide any additional information here -->
-
-
-**Error Log**
-<!--- If you received an error then please post it in the empty space below, -->
-<!--- so that the error is wrapped in the 3 backquotes (before and after) -->
-```
-
-```
+Paste the complete Lua error or crash details inside a code block. If the issue is visual, attach a screenshot.
