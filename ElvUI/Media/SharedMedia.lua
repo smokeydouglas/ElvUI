@@ -96,7 +96,11 @@ E.Media = {
 		Invisible = M..[[Fonts\Invisible.ttf]],
 		InterMedium = M..[[Fonts\Inter-Medium.ttf]],
 		JetBrainsMonoNLMedium = M..[[Fonts\JetBrainsMonoNL-Medium.ttf]],
-		PTSansNarrow = M..[[Fonts\PTSansNarrow.ttf]]
+		PTSansNarrow = M..[[Fonts\PTSansNarrow.ttf]],
+		RobotoRegular = M..[[Fonts\Roboto-Regular.ttf]],
+		RobotoMedium = M..[[Fonts\Roboto-Medium.ttf]],
+		RobotoCondensedRegular = M..[[Fonts\RobotoCondensed-Regular.ttf]],
+		RobotoMonoRegular = M..[[Fonts\RobotoMono-Regular.ttf]]
 	},
 	Sounds = {
 		AwwCrap = M..[[Sounds\AwwCrap.ogg]],
@@ -229,6 +233,10 @@ LSM:Register("font", "Expressway", E.Media.Fonts.Expressway, LSM.LOCALE_BIT_ruRU
 LSM:Register("font", "Inter Medium", E.Media.Fonts.InterMedium, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("font", "JetBrains Mono NL Medium", E.Media.Fonts.JetBrainsMonoNLMedium, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("font", "PT Sans Narrow", E.Media.Fonts.PTSansNarrow, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register("font", "Roboto Regular", E.Media.Fonts.RobotoRegular, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register("font", "Roboto Medium", E.Media.Fonts.RobotoMedium, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register("font", "Roboto Condensed Regular", E.Media.Fonts.RobotoCondensedRegular, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
+LSM:Register("font", "Roboto Mono Regular", E.Media.Fonts.RobotoMonoRegular, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("font", "Homespun", E.Media.Fonts.Homespun, LSM.LOCALE_BIT_ruRU + LSM.LOCALE_BIT_western)
 LSM:Register("sound", "ElvUI Aska", E.Media.Sounds.SndIncMsg)
 LSM:Register("sound", "Awww Crap", E.Media.Sounds.AwwCrap)

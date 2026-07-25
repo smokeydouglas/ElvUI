@@ -14,6 +14,7 @@ V.general = {
 	chatBubbleFontSize = 14,
 	chatBubbleFontOutline = "NONE",
 	chatBubbleName = false,
+	classModernFontVersion = 0,
 	pixelPerfect = true,
 	replaceBlizzFonts = true,
 	minimap = {
