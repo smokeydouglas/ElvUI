@@ -1289,6 +1289,9 @@ function E:Initialize()
 	-- their removed palette after the installer choices disappear.
 	if self.private.theme == "modern" or self.private.theme == "modern-rounded" then
 		self:SetupTheme("class", true)
+	elseif self.private.theme == "class-modern" and (self.private.general.classModernFontVersion or 0) < 2 then
+		-- Apply typography revisions once to existing Class Modern profiles.
+		self:SetupTheme("class-modern", true)
 	end
 
 	Minimap:UpdateSettings()

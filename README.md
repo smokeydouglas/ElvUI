@@ -19,7 +19,7 @@ Modern Battle.net, Retail, and current Classic clients are not supported.
 - Druid Cat Form detection uses the localized form name instead of relying on a server-dependent form index.
 - The Cat Form lookup is guarded when `GetShapeshiftForm()` returns `0`, preventing an error while the player is unshifted.
 - Nameplate castbars initialize their font strings before applying font settings.
-- The installer includes a fourth theme named `Modern`, with blue-charcoal surfaces, slate framing, and a restrained blue accent.
+- The installer includes a fourth theme named `Class Modern`. It preserves the Class palette and applies Roboto Regular consistently across ElvUI, Blizzard font replacements, combat text, and player names. Roboto Medium, Roboto Condensed Regular, and Roboto Mono Regular are also available as optional font selectors.
 - In-game update and support links point to this AzerothCore-focused fork.
 - Simplified and Traditional Chinese locale packages are not included.
 
@@ -47,7 +47,7 @@ Do not install the repository root as a single addon folder. The client must see
 - `/kb` starts keybinding mode.
 - `/reload` reloads the interface after configuration changes.
 
-To apply the custom theme, open `/ec`, choose `Install`, advance to Theme Setup, and select `Modern`.
+To apply the custom theme, open `/ec`, choose `Install`, advance to Theme Setup, and select `Class Modern`. Complete the remaining Layout and Auras steps, finish the installer, and allow the client to reload; the installer reapplies Roboto Regular after those later steps so legacy font defaults do not return. Existing Class Modern profiles migrate to the current Roboto typography once on the next full client launch.
 
 ## Reporting a problem
 

@@ -146,47 +146,26 @@ function E:GetColor(r, g, b, a)
 	return {r = r, g = g, b = b, a = a}
 end
 
-local CLASS_MODERN_BODY_FONT = "Inter Medium"
-local CLASS_MODERN_HUD_FONT = "Barlow Condensed SemiBold"
-local CLASS_MODERN_NUMBER_FONT = "JetBrains Mono NL Medium"
+local CLASS_MODERN_FONT = "Roboto Regular"
+local CLASS_MODERN_FONT_VERSION = 2
 
-local function SetTableFonts(tbl, defaults, font, numberFont)
+local function SetTableFonts(tbl, defaults, font)
 	for key, value in pairs(defaults) do
-		if key == "font" then
+		if type(key) == "string" and type(value) == "string" and key:lower():sub(-4) == "font" then
 			tbl[key] = font
-		elseif key == "countFont" or key == "durationFont" or key == "itemLevelFont" then
-			tbl[key] = numberFont or font
 		elseif type(value) == "table" and type(tbl[key]) == "table" then
-			SetTableFonts(tbl[key], value, font, numberFont)
+			SetTableFonts(tbl[key], value, font)
 		end
 	end
 end
 
 local function SetupClassModernFonts()
-	-- Body copy stays open and neutral; compact HUD labels use a condensed
-	-- family, while aligned figures use a non-ligature monospaced face.
-	E.db.general.font = CLASS_MODERN_BODY_FONT
-	E.db.general.minimap.locationFont = CLASS_MODERN_HUD_FONT
-	E.db.general.reminder.font = CLASS_MODERN_HUD_FONT
-
-	SetTableFonts(E.db.databars, P.databars, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.bags, P.bags, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.nameplates, P.nameplates, CLASS_MODERN_HUD_FONT, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.auras, P.auras, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.datatexts, P.datatexts, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.tooltip, P.tooltip, CLASS_MODERN_BODY_FONT)
-	SetTableFonts(E.db.unitframe, P.unitframe, CLASS_MODERN_HUD_FONT, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.cooldown, P.cooldown, CLASS_MODERN_NUMBER_FONT)
-	SetTableFonts(E.db.actionbar, P.actionbar, CLASS_MODERN_NUMBER_FONT)
-
-	E.db.chat.font = CLASS_MODERN_BODY_FONT
-	E.db.chat.tabFont = CLASS_MODERN_HUD_FONT
-	E.db.tooltip.healthBar.font = CLASS_MODERN_HUD_FONT
+	-- A single family keeps body copy, compact HUD labels, and numeric overlays
+	-- visually consistent while remaining readable across UI scales.
+	SetTableFonts(E.db, P, CLASS_MODERN_FONT)
+	SetTableFonts(E.private, V, CLASS_MODERN_FONT)
 	E.db.cooldown.fonts.enable = true
-
-	E.private.general.dmgfont = CLASS_MODERN_HUD_FONT
-	E.private.general.namefont = CLASS_MODERN_HUD_FONT
-	E.private.general.chatBubbleFont = CLASS_MODERN_BODY_FONT
+	E.private.general.classModernFontVersion = CLASS_MODERN_FONT_VERSION
 end
 
 function E:SetupTheme(theme, noDisplayMsg)
@@ -437,6 +416,10 @@ function E:SetupLayout(layout, noDataReset, noDisplayMsg)
 		end
 	end
 
+	if E.private.theme == "class-modern" then
+		SetupClassModernFonts()
+	end
+
 	E:UpdateAll(true)
 
 	if InstallStepComplete and not noDisplayMsg then
@@ -492,6 +475,11 @@ local function SetupAuras(style, noDisplayMsg)
 		if E.private.unitframe.enable then
 			UF:CreateAndUpdateUF("target")
 		end
+	end
+
+	if E.private.theme == "class-modern" then
+		SetupClassModernFonts()
+		E:UpdateAll(true)
 	end
 
 	if InstallStepComplete and not noDisplayMsg then
